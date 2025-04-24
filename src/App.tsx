@@ -8,12 +8,22 @@ interface InfoAlunoProps {
   age: string;
 }
 
+interface userProps {
+  name:string;
+  cargo:string;
+}
+
 export default function App() {
 
   const [input, setInput] = useState("");
   const [age, setAge] = useState("");
   const [infoAluno, setInfoAluno] = useState<InfoAlunoProps>();
   const [contador, setContador] = useState(0);
+  const [user, setUser] = useState('visitante!');
+  const [user2, setUser2] = useState<userProps>({
+    name: 'Visitante',
+    cargo: ''
+  });
 
   function mostrarAluno() {
     setInfoAluno({
@@ -33,10 +43,34 @@ export default function App() {
     setContador((valorAtual) => valorAtual - 1);
   }
 
+  function handleLogin() {
+    setUser('Fernando');
+  }
+
+  function handleLogout() {
+    setUser('visitante!');
+  }
+
+  function handleLogin2() {
+    setUser2({
+      name: 'Sujeito Programador',
+      cargo: 'Programador'
+    });
+  };
+
+  function handleLogout2() {
+    setUser2({
+      name: 'Visitante',
+      cargo: ''
+    })
+  }
+
   return (
     <div>
       <Header title="Curso React + TypeScript" />
+
       <h1>Conhecendo useState</h1>
+
       <input
         type="text"
         placeholder="Enter your name..."
@@ -45,6 +79,7 @@ export default function App() {
       />
       <br />
       <br />
+
       <input
         type="number"
         placeholder="Enter your age..."
@@ -53,23 +88,40 @@ export default function App() {
       />
       <br />
       <br />
+
       <button onClick={mostrarAluno}>Mostrar Aluno</button>
       <br />
-      <br />
       <hr />
+
       <h3>Bem vindo: {infoAluno?.name}</h3>
       <h3>Idade: {infoAluno?.age}</h3>
       <br />
       <hr />
+
       <h1>Contador com useState</h1>
-      <button onClick={adicionar}>+</button> {contador} <button onClick={diminuir}>-</button>
+      <button onClick={adicionar}>+</button> 
+        {contador}
+      <button onClick={diminuir}>-</button>
       <br />
       <hr />
+
       <Aluno name="Sujeito Programador" age={5} />
       <Aluno name="Fernando" age={44} />
       <Aluno name="Programador" age={4} />
       <br />
       <hr />
+
+      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogout}>Logout</button>
+      <p>Hello, {user}!</p>
+      <br />
+      <hr />
+
+      <button onClick={handleLogin2}>Login</button>
+      <button onClick={handleLogout2}>Logout</button>
+      <p>Hello, {user2.name}!</p>
+      <strong>{user2.cargo}</strong>
+
       <Footer />
     </div>
   );
