@@ -138,31 +138,31 @@ import { useState, FormEvent } from 'react';
 
 interface InfoProps {
   title: string;
-  petrol: string | number;
+  gasolina: string | number;
   alcool: string | number;
 }
 
 export default function App() {
 
-  const [petrolInput, setPetrolInput] = useState(0);
+  const [gasolinaInput, setGasolinaInput] = useState(0);
   const [alcoolInput, setAlcoolInput] = useState(0);
   const [info, setInfo] = useState<InfoProps>();
 
   function calcular(event: FormEvent) {
     event.preventDefault();
 
-    let calculo = (alcoolInput / petrolInput)
+    let calculo = (alcoolInput / gasolinaInput)
 
     if (calculo <= 0.7) {
       setInfo({
         title: "Compensa usar alcool!",
-        petrol: formatarMoeda(petrolInput),
+        gasolina: formatarMoeda(gasolinaInput),
         alcool: formatarMoeda(alcoolInput)
       })
     } else {
       setInfo({
         title: "Compensa usar Petrol!",
-        petrol: formatarMoeda(petrolInput),
+        gasolina: formatarMoeda(gasolinaInput),
         alcool: formatarMoeda(alcoolInput)
       })
     }
@@ -205,8 +205,8 @@ export default function App() {
             min="1"
             step="0.01"
             required
-            value={petrolInput}
-            onChange={(e) => setPetrolInput(Number(e.target.value))}
+            value={gasolinaInput}
+            onChange={(e) => setGasolinaInput(Number(e.target.value))}
           />
 
           <input className='button' type="submit" value="Calcular" />
@@ -220,7 +220,7 @@ export default function App() {
             </h2>
 
             <span>Alcool {info.alcool}</span>
-            <span>Petrol {info.petrol}</span>
+            <span>Petrol {info.gasolina}</span>
           </section>
         )}
 
