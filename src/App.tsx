@@ -1,3 +1,4 @@
+{/*
 import { Header } from './components/header';
 import { Aluno } from './components/aluno';
 import { Footer } from './components/footer';
@@ -126,4 +127,54 @@ export default function App() {
     </div>
   );
 }
+*/}
 
+{/*--------------------------FUEL PROJECT---------------------------------*/}
+//import { useState } from 'react';
+import logoImg from './assets/img_01.jpg';
+import './index.css';
+import './App.css';
+import { useState, FormEvent } from 'react';
+
+export default function App() {
+
+  const [petrolInput, setPetrolInput] = useState(1);
+  const [alcoolInput, setAlcoolInput] = useState(1);
+
+  function calcular(event: FormEvent) {
+    event.preventDefault();
+  }
+
+  return (
+    <>
+      <main className="container">
+        <img className="logo" src={logoImg} alt="logo de fundo" />
+        <h1 className="title">Qual melhor opcao?</h1>
+
+        <form className="form" onSubmit={calcular}>
+          <label>Alcool (preco por litro)</label>
+          <input
+            type="number"
+            className="input"
+            placeholder="4,90"
+            min="1"
+            step="0.01"
+            required
+          />
+
+          <label htmlFor="">Petrol (preco por litro)</label>
+          <input
+            type="number"
+            className="input"
+            placeholder="6,90"
+            min="1"
+            step="0.01"
+            required
+          />
+
+          <input className='button' type="submit" value="Calcular"/>
+        </form>
+      </main>
+    </>
+  );
+}

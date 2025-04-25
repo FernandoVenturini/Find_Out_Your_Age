@@ -5,3 +5,12 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+body {
+    background-color: #22272e;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
