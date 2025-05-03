@@ -129,7 +129,7 @@ export default function App() {
 }
 */}
 
-{/*--------------------------FUEL PROJECT---------------------------------*/ }
+{/*--------------------------FUEL PROJECT---------------------------------
 //import { useState } from 'react';
 import logoImg from './assets/img_01.jpg';
 import './index.css';
@@ -161,7 +161,7 @@ export default function App() {
       })
     } else {
       setInfo({
-        title: "Compensa usar Petrol!",
+        title: "Compensa usar Gasolina!",
         gasolina: formatarMoeda(gasolinaInput),
         alcool: formatarMoeda(alcoolInput)
       })
@@ -228,3 +228,6 @@ export default function App() {
     </div>
   );
 }
+*/ }
+
+{/*------------------------------LISTA DE TAREFAS_________________________*/}
