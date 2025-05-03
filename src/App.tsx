@@ -230,4 +230,45 @@ export default function App() {
 }
 */ }
 
-{/*------------------------------LISTA DE TAREFAS_________________________*/}
+{/*------------------------------LISTA DE TAREFAS_________________________*/ }
+import { useState } from 'react'
+
+export default function App() {
+
+  const [input, setInput] = useState("");
+  const [tasks, setTasks] = useState([
+    'Estudar react com TypeScript',
+    'Comprar pao meio dia',
+    'Estudar ingles a noite'
+  ]);
+
+  function handleRegister() {
+    if (!input) {
+      alert("Preencha o nome da sua tarefa!");
+      return;
+    }
+
+    setTasks(tarefas => [...tarefas, input]);
+    setInput("");
+  }
+
+  return (
+    <>
+      <h1>Lista de Tarefas</h1>
+      <input
+        placeholder='Digite o nome da tarefa...'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={handleRegister}>Adicionar tarefa</button>
+      <hr />
+
+      {tasks.map((item, index) => (
+        <section key={item}>
+          <span>{item}</span>
+          <button>Excluir</button>
+        </section>
+      ))}
+    </>
+  )
+}
