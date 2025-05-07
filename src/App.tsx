@@ -231,7 +231,7 @@ export default function App() {
 */ }
 
 {/*------------------------------LISTA DE TAREFAS_________________________*/ }
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function App() {
 
@@ -241,7 +241,17 @@ export default function App() {
   const [editTask, setEditTask] = useState({
     enabled: false,
     task: ''
-  })
+  });
+
+  {/* USEEFFECT */}
+  useEffect(() => {
+    const tarefaSalvas = localStorage.getItem("@cursoreact");
+
+    if (tarefaSalvas) {
+      setTasks(JSON.parse(tarefaSalvas));
+    }
+    
+  }, []);
 
   function handleRegister() {
     if (!input) {
@@ -256,7 +266,9 @@ export default function App() {
 
     setTasks(tarefas => [...tarefas, input]);
     setInput("");
+    localStorage.setItem("@cursoreact", JSON.stringify([...tasks, input])); // SALVANDO NO LOCALSTORAGE
   }
+
 
   function handleSaveEdit() {
     const findIndexTask = tasks.findIndex(task => task === editTask.task);
@@ -269,11 +281,13 @@ export default function App() {
       task: ''
     });
     setInput('');
+    localStorage.setItem("@cursoreact", JSON.stringify(allTasks)); // SALVANDO NO LOCALSTORAGE
   }
 
   function handleDelete(item:string) {
     const removeTask = tasks.filter(task => task !== item);
     setTasks(removeTask);
+    localStorage.setItem("@cursoreact", JSON.stringify(removeTask)); // SALVANDO NO LOCALSTORAGE
   }
 
   function handleEdit(item:string) {
