@@ -231,14 +231,17 @@ export default function App() {
 */ }
 
 {/*------------------------------LISTA DE TAREFAS_________________________*/ }
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function App() {
 
-  const [input, setInput] = useState("");
-  const [tasks, setTasks] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null); // useRef
+  const firstRender = useRef(true);
 
-  const [editTask, setEditTask] = useState({
+  const [input, setInput] = useState(""); // useState
+  const [tasks, setTasks] = useState<string[]>([]); // useState
+
+  const [editTask, setEditTask] = useState({ // useState
     enabled: false,
     task: ''
   });
@@ -250,8 +253,18 @@ export default function App() {
     if (tarefaSalvas) {
       setTasks(JSON.parse(tarefaSalvas));
     }
-    
+
   }, []);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
+    localStorage.setItem("@cursoreact", JSON.stringify(tasks));
+
+  }, [tasks]);
 
   function handleRegister() {
     if (!input) {
@@ -266,7 +279,6 @@ export default function App() {
 
     setTasks(tarefas => [...tarefas, input]);
     setInput("");
-    localStorage.setItem("@cursoreact", JSON.stringify([...tasks, input])); // SALVANDO NO LOCALSTORAGE
   }
 
 
@@ -281,16 +293,17 @@ export default function App() {
       task: ''
     });
     setInput('');
-    localStorage.setItem("@cursoreact", JSON.stringify(allTasks)); // SALVANDO NO LOCALSTORAGE
   }
 
   function handleDelete(item:string) {
     const removeTask = tasks.filter(task => task !== item);
     setTasks(removeTask);
-    localStorage.setItem("@cursoreact", JSON.stringify(removeTask)); // SALVANDO NO LOCALSTORAGE
   }
 
   function handleEdit(item:string) {
+
+    inputRef.current?.focus(); //Quando clicar no input, o cursor ja fica piscando.
+
     setInput(item)
     setEditTask({
       enabled: true,
@@ -305,6 +318,7 @@ export default function App() {
         placeholder='Digite o nome da tarefa...'
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        ref={inputRef}
       />
       <button onClick={handleRegister}>
         {editTask.enabled ? "Atualizar tarefa" : "Adicionar tarefa"}
