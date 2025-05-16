@@ -346,7 +346,7 @@ return (
 }
 */}
 
-{/*********************************************RENDERIZACAO CONDICIONAL*********************************************/}
+{/*********************************************RENDERIZACAO CONDICIONAL********************************************
 import { useState } from "react";
 import './App.css';
 
@@ -374,6 +374,36 @@ const [userName, setUsername] = useState('Fernando');
     </div>
   );
 
+}
+
+export default App;
+*/}
+
+//import { useState } from "react";
+import './App.css';
+import logoImg from './assets/logo.png';
+
+//const [] = useState();
+
+function App() {
+  return (
+    <div className="container">
+      <img 
+        src={logoImg} 
+        alt="logo" 
+        className='logo'
+      />
+      <h2 className='title'>Categorias</h2>
+      <section className='category-area'>        
+        <button className='category-button'>Motivacao</button>
+        <button className='category-button'>Bem Estar</button>
+      </section>
+
+      <button className="button-frase">Gerar Frase</button>
+
+      <h2 className='texto-frase'>Alguma frase vem aqui!</h2>
+    </div>
+  );
 }
 
 export default App;
