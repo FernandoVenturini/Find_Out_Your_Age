@@ -231,6 +231,7 @@ export default function App() {
 */ }
 
 {/*------------------------------LISTA DE TAREFAS_________________________*/ }
+{/*
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 
 export default function App() {
@@ -246,7 +247,6 @@ export default function App() {
     task: ''
   });
 
-  {/* USEEFFECT */ }
   useEffect(() => {
     const tarefaSalvas = localStorage.getItem("@cursoreact");
 
@@ -344,3 +344,36 @@ return (
   </>
 )
 }
+*/}
+
+{/*********************************************RENDERIZACAO CONDICIONAL*********************************************/}
+import { useState } from "react";
+import './App.css';
+
+function App() {
+  
+const [signed, setSigned] = useState(false);
+const [userName, setUsername] = useState('Fernando');
+
+  return (
+    <div>
+      {userName.length >= 9 && <p>User name muito grande!</p>}
+
+      <button onClick={() => setSigned(true)}>Entrar</button>
+
+      <br /><br />
+
+      {signed && (
+        <div>
+          <h1>Bem vindo Fernando!</h1>
+          <p>Usuario online!</p>
+          <button onClick={() => setSigned(false)}>Sair</button>
+        </div>
+      )}
+
+    </div>
+  );
+
+}
+
+export default App;
