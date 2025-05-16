@@ -231,7 +231,7 @@ export default function App() {
 */ }
 
 {/*------------------------------LISTA DE TAREFAS_________________________*/ }
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 
 export default function App() {
 
@@ -246,7 +246,7 @@ export default function App() {
     task: ''
   });
 
-  {/* USEEFFECT */}
+  {/* USEEFFECT */ }
   useEffect(() => {
     const tarefaSalvas = localStorage.getItem("@cursoreact");
 
@@ -266,7 +266,8 @@ export default function App() {
 
   }, [tasks]);
 
-  function handleRegister() {
+
+  const handleRegister = useCallback(() => {
     if (!input) {
       alert("Preencha o nome da sua tarefa!");
       return;
@@ -279,59 +280,67 @@ export default function App() {
 
     setTasks(tarefas => [...tarefas, input]);
     setInput("");
-  }
+  }, [input, tasks]);
 
 
-  function handleSaveEdit() {
-    const findIndexTask = tasks.findIndex(task => task === editTask.task);
-    const allTasks = [...tasks];
-    allTasks[findIndexTask] = input;
-    setTasks(allTasks);
+function handleSaveEdit() {
+  const findIndexTask = tasks.findIndex(task => task === editTask.task);
+  const allTasks = [...tasks];
+  allTasks[findIndexTask] = input;
+  setTasks(allTasks);
 
-    setEditTask({
-      enabled: false,
-      task: ''
-    });
-    setInput('');
-  }
+  setEditTask({
+    enabled: false,
+    task: ''
+  });
+  setInput('');
+}
 
-  function handleDelete(item:string) {
-    const removeTask = tasks.filter(task => task !== item);
-    setTasks(removeTask);
-  }
+function handleDelete(item: string) {
+  const removeTask = tasks.filter(task => task !== item);
+  setTasks(removeTask);
+}
 
-  function handleEdit(item:string) {
+function handleEdit(item: string) {
 
-    inputRef.current?.focus(); //Quando clicar no input, o cursor ja fica piscando.
+  inputRef.current?.focus(); //Quando clicar no input, o cursor ja fica piscando.
 
-    setInput(item)
-    setEditTask({
-      enabled: true,
-      task: item
-    })
-  }
+  setInput(item)
+  setEditTask({
+    enabled: true,
+    task: item
+  })
+}
 
-  return (
-    <>
-      <h1>Lista de Tarefas</h1>
-      <input
-        placeholder='Digite o nome da tarefa...'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        ref={inputRef}
-      />
-      <button onClick={handleRegister}>
-        {editTask.enabled ? "Atualizar tarefa" : "Adicionar tarefa"}
-      </button>
-      <hr />
+const totalTarefas = useMemo(() => {
+  return tasks.length;
+}, [tasks]);
 
-      {tasks.map((item, index) => (
-        <section key={item}>
-          <span>{item}</span>
-          <button onClick={() => handleEdit(item)}>Editar</button>
-          <button onClick={() => handleDelete(item)}>Excluir</button>
-        </section>
-      ))}
-    </>
-  )
+return (
+  <>
+    <h1>Lista de Tarefas</h1>
+    <input
+      placeholder='Digite o nome da tarefa...'
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
+      ref={inputRef}
+    />
+    <button onClick={handleRegister}>
+      {editTask.enabled ? "Atualizar tarefa" : "Adicionar tarefa"}
+    </button>
+
+    <hr />
+
+    <strong>Voce tem {totalTarefas}</strong>
+    <br /><br />
+
+    {tasks.map((item, index) => (
+      <section key={item}>
+        <span>{item}</span>
+        <button onClick={() => handleEdit(item)}>Editar</button>
+        <button onClick={() => handleDelete(item)}>Excluir</button>
+      </section>
+    ))}
+  </>
+)
 }
