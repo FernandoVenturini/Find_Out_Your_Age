@@ -346,9 +346,6 @@ return (
 }
 */}
 
-<<<<<<< HEAD
-{/*************************RENDERIZACAO CONDICIONAL**************************************
-=======
 {/*********************************************RENDERIZACAO CONDICIONAL********************************************
 >>>>>>> 279db395cd56a1fcdd09a617a7cadae592646dfb
 import { useState } from "react";
@@ -405,7 +402,7 @@ function App() {
 
       <button className="button-frase">Gerar Frase</button>
 
-      <h2 className='texto-frase'>Alguma frase vem aqui!</h2>
+      <p className='texto-frase'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis vitae veniam nobis fugit.</p>
     </div>
   );
 }
