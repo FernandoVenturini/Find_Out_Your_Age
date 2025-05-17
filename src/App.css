@@ -1,4 +1,4 @@
-.container {
+/*.container {
     max-width: 720px;
     display: flex;
     flex-direction: column;
@@ -79,4 +79,20 @@ input {
 .result span {
     color: #fff;
     margin-bottom: 8px;
+}
+*/
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #121212;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 120px;
+}
+
+.logo {
+    max-width: 350px;
+    
 }
