@@ -346,7 +346,11 @@ return (
 }
 */}
 
+<<<<<<< HEAD
 {/*************************RENDERIZACAO CONDICIONAL**************************************
+=======
+{/*********************************************RENDERIZACAO CONDICIONAL********************************************
+>>>>>>> 279db395cd56a1fcdd09a617a7cadae592646dfb
 import { useState } from "react";
 import './App.css';
 
@@ -379,32 +383,30 @@ const [userName, setUsername] = useState('Fernando');
 export default App;
 */}
 
-import { useState } from 'react';
+//import { useState } from "react";
 import './App.css';
 import logoImg from './assets/logo.png';
 
+//const [] = useState();
+
 function App() {
-
-  const [] = useState();
-
   return (
-    <>
-      <div className='container'>
-        <img src={logoImg} alt="logo" />
-        <h2 className='title'>Categorias</h2>
+    <div className="container">
+      <img 
+        src={logoImg} 
+        alt="logo" 
+        className='logo'
+      />
+      <h2 className='title'>Categorias</h2>
+      <section className='category-area'>        
+        <button className='category-button'>Motivacao</button>
+        <button className='category-button'>Bem Estar</button>
+      </section>
 
-        <section className="category-area">
-          <button className='category-button'>Motivacao</button>
-          <button className='category-button'>Bem Estar</button>
-        </section>
+      <button className="button-frase">Gerar Frase</button>
 
-        <button className='button-frase'>Gerar Frase</button>
-
-        <h3 className='texto-frase'>Alguma frase vem aqui</h3>
-
-
-      </div>
-    </>
+      <h2 className='texto-frase'>Alguma frase vem aqui!</h2>
+    </div>
   );
 }
 
