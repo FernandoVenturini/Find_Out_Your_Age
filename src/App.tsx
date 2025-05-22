@@ -380,29 +380,217 @@ const [userName, setUsername] = useState('Fernando');
 export default App;
 */}
 
-//import { useState } from "react";
+
+{
+  /***************************PROJETO DEVFRASE***********************************
+import { useState } from "react";
 import './App.css';
 import logoImg from './assets/logo.png';
 
-//const [] = useState();
-
 function App() {
+
+  const [textoFrase, setTextoFrase] = useState('');
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
+
+  const allFrases = [
+    {
+      id: 1,
+      nome: "Motivacao",
+      frase: [
+        "A vida é 10% o que acontece e 90% como reagimos a isso.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+      ],
+    },
+    {
+      id: 2,
+      nome: "Bom dia",
+      frase: [
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+      ],
+    },
+    {
+      id: 3,
+      nome: "Boa tarde",
+      frase: [
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+      ],
+    },
+    {
+      id: 4,
+      nome: "Boa noite",
+      frase: [
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "A única maneira de fazer um ótimo trabalho é amar o que você faz.",
+        "Acredite em si mesmo e todo o resto virá naturalmente.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+      ],
+    },
+  ];
+
+  function handleSwitchCategory(index: number) {
+    setTextoFrase('');
+    setCategoriaSelecionada(index);
+  }
+
+  function gerarFrase() {
+    const numeroAleatorio = Math.floor(Math.random() * allFrases[categoriaSelecionada].frase.length);
+    setTextoFrase(`"${allFrases[categoriaSelecionada].frase[numeroAleatorio]}"`);
+  }
+
   return (
     <div className="container">
-      <img 
-        src={logoImg} 
-        alt="logo" 
-        className='logo'
-      />
-      <h2 className='title'>Categorias</h2>
-      <section className='category-area'>        
-        <button className='category-button'>Motivacao</button>
-        <button className='category-button'>Bem Estar</button>
+      <img src={logoImg} alt="logo" className="logo" />
+      <h2 className="title">Categorias</h2>
+      <section className="category-area">
+        {allFrases.map((item, index) => (
+          <button
+            key={item.id}
+            className="category-button"
+            style={{
+              borderWidth: item.nome === allFrases[categoriaSelecionada].nome ? 2 : 0,
+              borderColor: "#1fa4db"
+            }}
+
+            onClick={() => handleSwitchCategory(index)}
+            >
+            {item.nome}
+          </button>
+        ))};
       </section>
 
-      <button className="button-frase">Gerar Frase</button>
+      <button className="button-frase" onClick={gerarFrase}>Gerar Frase</button>
 
-      <p className='texto-frase'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis vitae veniam nobis fugit.</p>
+      {textoFrase !== "" && <p className="texto-frase">{textoFrase}</p>};
+
+    </div>
+  );
+}
+
+export default App;
+*/}
+
+{
+  /********************************END - PROJETO DEVFRASE**********************************/}
+
+  {/*******************************START - PROJETO IDADE***********************************/}
+import { useState } from "react";
+
+function App() {
+
+  const [name, setName] = useState<string>('');
+  const [currentYear] = useState<number>(2025);
+  const [yearOfBirth, setYearOfBirth] = useState<number>(0);
+  const [age, setAge] = useState<number>(0);
+
+  function calcularIdade() {
+    setAge(currentYear - yearOfBirth);
+  }
+
+  return (
+    <div
+      style={{
+        width: "500px",
+        height: "500px",
+        borderRadius: "10px",
+        display: "flex",
+        padding: 20,
+        flexDirection: "column",
+        background: "#1d2490",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "32px",
+          textAlign: "center",
+          marginBottom: "1rem",
+          color: "#f00",
+        }}
+      >
+        Find Out Your Age
+      </h1>
+
+      <p style={{ fontSize: "18px", marginBottom: "0.5rem", color: "#fff" }}>
+        Enter your name:
+      </p>
+      <input
+        style={{
+          padding: 10,
+          marginBottom: "2rem",
+          borderRadius: "5px",
+          border: "none",
+        }}
+        type="text"
+        placeholder="Enter your name..."
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <p style={{ fontSize: "18px", marginBottom: "0.5rem", color: "#fff" }}>
+        Enter the year you were born:
+      </p>
+      <input
+        style={{
+          padding: 10,
+          marginBottom: "2rem",
+          borderRadius: "5px",
+          border: "none",
+        }}
+        type="number"
+        placeholder="Enter your year of birth..."
+        value={yearOfBirth}
+        onChange={(e) => setYearOfBirth(Number(e.target.value))}
+      />
+
+      <button
+        style={{
+          padding: 10,
+          background: "yellow",
+          borderRadius: "5px",
+          cursor: "pointer",
+          marginBottom: "1rem",
+          fontSize: "18px",
+          fontWeight: "bold",
+          color: "blue",
+        }}
+        onClick={calcularIdade}
+      >
+        Find Out Age
+      </button>
+
+      {age > 0 && (
+        <p
+          style={{
+            color: "purple",
+            textAlign: "center",
+            marginTop: "2rem",
+            fontSize: "20px",
+            fontWeight: "bold",
+            padding: "30px",
+            background: "#ccc",
+            borderRadius: "5px",
+          }}
+        >
+          Hello, {name}! Your age: {age} years.
+        </p>
+      )}
     </div>
   );
 }
