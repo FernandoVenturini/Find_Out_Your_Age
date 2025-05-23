@@ -81,7 +81,7 @@ input {
     margin-bottom: 8px;
 }
 */
-
+/*
 .container {
     width: 100%;
     min-height: 100vh;
@@ -138,4 +138,14 @@ input {
     color: #dd7b22;
     font-style: italic;
     font-size: 18px;
+}
+*/
+
+header {
+    width: 100%;
+    height: 150px;
+    background-color: 'yellow';
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -487,10 +487,10 @@ function App() {
 export default App;
 */}
 
-{
-  /********************************END - PROJETO DEVFRASE**********************************/}
+{/********************************END - PROJETO DEVFRASE**********************************/}
 
-  {/*******************************START - PROJETO IDADE***********************************/}
+  {
+    /*******************************START - PROJETO IDADE**********************************
 import { useState } from "react";
 
 function App() {
@@ -595,4 +595,26 @@ function App() {
   );
 }
 
+export default App;*/}
+{
+  /********************************END - PROJETO DEVFRASE**********************************/
+}
+
+{/*******************************START - REACT ROUTER DOM***********************************/}
+
+// IMPORTANDO ROUTER
+import { RouterProvider } from "react-router-dom";
+// IMPORTANDO routes.tsx
+import { router } from './routes';
+import './App.css';
+function App() {
+
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
+}
+
 export default App;
+
