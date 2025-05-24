@@ -9,24 +9,31 @@ import {Contato} from './pages/contato/contato';
 // IMPORTANDO index.tsx(PRODUTOS) DE PAGES:
 import {Produtos} from './pages/produtos/produtos';
 
+import { Layout } from './components/layouts/layout';
+
 // CRIANDO O ROTEADOR COM AS ROTAS:
 const router = createBrowserRouter([
     {
-        path: '/',
-        element: <Home/>
+        element: <Layout />,
+        children: [
+        {
+            path: "/",
+            element: <Home />,
+        },
+        {
+            path: "/sobre",
+            element: <Sobre />,
+        },
+        {
+            path: "/contato",
+            element: <Contato />,
+        },
+        {
+            path: "/produtos",
+            element: <Produtos />,
+        },
+        ],
     },
-    {
-        path: '/sobre',
-        element: <Sobre/>
-    },
-    {
-        path: '/contato',
-        element: <Contato/>
-    },
-    {
-        path: '/produtos',
-        element: <Produtos/>
-    }
-])
+]);
 
 export { router };
